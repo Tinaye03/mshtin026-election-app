@@ -7,7 +7,7 @@ import Link from "next/link"
 
 export default function Component() {
   return (
-    <div className="grid min-h-screen flex flex-col items-center justify-center gap-4 px-4 text-center md:px-6">
+    <div className="grid min-h-screen flex flex-col items-center justify-center gap-4 px-4 text-center md:px-6" style={{ backgroundImage: "url('/background.jpg')", backgroundSize: "cover"}}>
       <div className="space-y-4">
         <div className="space-y-2">
           <img
