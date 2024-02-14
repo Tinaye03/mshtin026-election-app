@@ -13,7 +13,7 @@ export default function Component() {
     <div className="flex flex-col min-h-screen">
       <header className="py-4">
         <div className="container grid items-center gap-4 px-4">
-          <Link className="flex items-center gap-2 text-xl font-bold" href="#">
+          <Link className="flex items-center gap-2 text-xl font-bold" href="/">
             <HomeIcon className="w-6 h-6" />
             Home
           </Link>
@@ -48,7 +48,7 @@ export default function Component() {
               <Label htmlFor="password">Password</Label>
               <Input id="password" type="password" />
             </div>
-            <Button className="w-full">Register</Button>
+            <Link href="/login"><Button className="w-full">Register</Button></Link>
           </div>
         </div>
       </main>

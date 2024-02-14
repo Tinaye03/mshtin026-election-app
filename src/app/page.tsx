@@ -5,7 +5,7 @@
  */
 import Link from "next/link"
 
-export default function HomePage() {
+export default function Component() {
   return (
     <div className="grid min-h-screen flex flex-col items-center justify-center gap-4 px-4 text-center md:px-6">
       <div className="space-y-4">
@@ -130,17 +130,18 @@ export default function HomePage() {
       <div className="absolute top-4 right-4 flex gap-2">
         <Link
           className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 border-gray-200 bg-blue-500 px-8 text-sm font-medium shadow-sm transition-colors hover:bg-blue-600 hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-600 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:border-gray-800 dark:bg-blue-500 dark:hover:bg-blue-600 dark:hover:text-white dark:focus-visible:ring-blue-600"
-          href="#"
+          href="/login"
         >
           Login
         </Link>
         <Link
           className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 border-gray-200 bg-blue-500 px-8 text-sm font-medium shadow-sm transition-colors hover:bg-blue-600 hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-600 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:border-gray-800 dark:bg-blue-500 dark:hover:bg-blue-600 dark:hover:text-white dark:focus-visible:ring-blue-600"
-          href="#"
+          href="/register"
         >
-          Registration
+          Register
         </Link>
       </div>
     </div>
   )
 }
+
