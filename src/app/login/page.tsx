@@ -24,7 +24,7 @@ export default function Component() {
         <div className="space-y-2">
           <div className="flex items-center">
             <Label htmlFor="password">Password</Label>
-            <Link className="ml-auto inline-block text-sm underline" href="#">
+            <Link className="ml-auto inline-block text-sm underline" href="/register">
               Forgot your password?
             </Link>
           </div>

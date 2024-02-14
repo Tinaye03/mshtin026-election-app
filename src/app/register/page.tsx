@@ -23,7 +23,7 @@ export default function Component() {
         <div className="mx-auto max-w-[400px] px-4 space-y-4">
           <div className="space-y-2 text-center">
             <h1 className="text-3xl font-bold">Register to Vote</h1>
-            <p className="text-gray-500 dark:text-gray-400">Enter your information to register to vote</p>
+            <p className="text-gray-500 dark:text-gray-400">Enter your information to register to vote for the incoming Chief Technology Officer</p>
           </div>
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
@@ -55,7 +55,7 @@ export default function Component() {
       <footer className="border-t">
         <div className="container flex justify-center items-center h-14 px-4 text-sm">
           <div className="flex items-center gap-2">
-            <span className="font-semibold">Company</span>
+            <span className="font-semibold">EmpowerTech Solutions</span>
           </div>
         </div>
       </footer>
