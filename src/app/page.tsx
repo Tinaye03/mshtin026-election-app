@@ -7,40 +7,41 @@ import Link from "next/link"
 
 export default function Component() {
   return (
-    <div className="grid min-h-screen flex flex-col items-center justify-center gap-4 px-4 text-center md:px-6" style={{ backgroundImage: "url('/background.jpg')", backgroundSize: "cover"}}>
-      <div className="space-y-4">
-        <div className="space-y-2">
-          <img
+    <div className="grid min-h-screen flex flex-col items-center justify-center gap-6 px-4 text-center md:px-6" style={{ backgroundImage: "url('/background.jpg')", backgroundSize: "cover"}}>
+      <div className="space-y-5">
+        <div className="space-y-3">
+          {/* <img
             alt="Company Logo"
-            className="mx-auto mb-4"
-            height={60}
-            src="/placeholder.svg"
+            className="mx-auto mb-8"
+            height={100}
+            src="/logo.png"
             style={{
-              aspectRatio: "220/60",
+              aspectRatio: "120/60",
               objectFit: "cover",
             }}
             width={220}
-          />
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Results</h1>
-          <p className="text-gray-500 dark:text-gray-400">Vote for your favorite candidate</p>
+          /> */}
+          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-4xl">EmpowerTech Solutions</h1>
+          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-2xl">Chief Technology Officer Vote Results</h1>
+          <p className="text-gray-500 dark:text-black-400">We extend our gratitude to all who participated. Kindly find the voting results displayed below:</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <img
-                alt="John Doe"
+                alt="Tinaye Mushore"
                 className="rounded-full"
                 height={120}
-                src="/placeholder.svg"
+                src="/member-01.jpeg"
                 style={{
                   aspectRatio: "120/120",
                   objectFit: "cover",
                 }}
                 width={120}
               />
-              <div className="text-lg font-medium ml-2">John Doe</div>
+              <div className="text-lg font-medium ml-2">Tinaye Mushore</div>
             </div>
-            <div className="text-sm text-blue-500 dark:text-blue-400">25%</div>
+            <div className="text-sm text-black-500 dark:text-black-400">25%</div>
           </div>
           <div className="h-4 bg-gray-200 rounded-lg overflow-hidden">
             <div
@@ -53,19 +54,19 @@ export default function Component() {
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <img
-                alt="Alice Johnson"
+                alt="Tanatswa Mhanzi"
                 className="rounded-full"
                 height={120}
-                src="/placeholder.svg"
+                src="/member-02.jpeg"
                 style={{
                   aspectRatio: "120/120",
                   objectFit: "cover",
                 }}
                 width={120}
               />
-              <div className="text-lg font-medium ml-2">Alice Johnson</div>
+              <div className="text-lg font-medium ml-2">Tanatswa Mhanzi</div>
             </div>
-            <div className="text-sm text-blue-500 dark:text-blue-400">20%</div>
+            <div className="text-sm text-black-500 dark:text-black-400">20%</div>
           </div>
           <div className="h-4 bg-gray-200 rounded-lg overflow-hidden">
             <div
@@ -78,19 +79,19 @@ export default function Component() {
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <img
-                alt="Michael Smith"
+                alt="Florence Muirimi"
                 className="rounded-full"
                 height={120}
-                src="/placeholder.svg"
+                src="/member-03.jpeg"
                 style={{
                   aspectRatio: "120/120",
                   objectFit: "cover",
                 }}
                 width={120}
               />
-              <div className="text-lg font-medium ml-2">Michael Smith</div>
+              <div className="text-lg font-medium ml-2">Florence Muirimi</div>
             </div>
-            <div className="text-sm text-blue-500 dark:text-blue-400">30%</div>
+            <div className="text-sm text-black-500 dark:text-black-400">30%</div>
           </div>
           <div className="h-4 bg-gray-200 rounded-lg overflow-hidden">
             <div
@@ -103,19 +104,19 @@ export default function Component() {
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <img
-                alt="Sophia Williams"
+                alt="Kiwi Mupfupi"
                 className="rounded-full"
                 height={120}
-                src="/placeholder.svg"
+                src="/member-04.jpeg"
                 style={{
                   aspectRatio: "120/120",
                   objectFit: "cover",
                 }}
                 width={120}
               />
-              <div className="text-lg font-medium ml-2">Sophia Williams</div>
+              <div className="text-lg font-medium ml-2">Kiwi Mupfupi</div>
             </div>
-            <div className="text-sm text-blue-500 dark:text-blue-400">25%</div>
+            <div className="text-sm text-black-500 dark:text-black-400">25%</div>
           </div>
           <div className="h-4 bg-gray-200 rounded-lg overflow-hidden">
             <div
