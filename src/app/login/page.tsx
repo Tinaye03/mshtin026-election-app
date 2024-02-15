@@ -32,16 +32,16 @@ export default function Component() {
         </div>
       </CardContent>
       <CardFooter>
-        <Button
+        <Link href="/vote"><Button
           className="w-full"
           style={{
             // "--tw-scale": "0.99",
           }}
         >
           Sign in
-        </Button>
+        </Button></Link>
       </CardFooter>
-      <div className="flex items-end justify-center h-full mt-1">
+      <div className="flex items-end justify-left h-full mt-1">
         <Link
         className="inline-flex h-10 items-center justify-center rounded-md border border-black-200 bg-black px-8 text-white text-sm font-medium shadow-sm transition-colors hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-black disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:bg-black dark:hover:bg-white dark:hover:text-black dark:focus-visible:ring-black"
         href="/"
