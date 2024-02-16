@@ -11,6 +11,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import React, { useState } from 'react';
 import { useRouter } from "next/navigation"
+import { auth, firestore } from "../firebase"
 import {signInWithEmailAndPassword} from"firebase/auth";
 
 export default function Component() {
@@ -29,7 +30,7 @@ export default function Component() {
     setPasswordError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email) {
       setEmailError("Email is a required field for login");
@@ -42,6 +43,11 @@ export default function Component() {
     if (password && email) {
       router.push("/vote")
     }
+
+    await signInWithEmailAndPassword(auth, email, password)
+      .then(userCredentials => {
+        const user = userCredentials.user;
+        console.log('Registered with:', user.email);})
   };
 
   return (
