@@ -11,6 +11,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import React, { useState } from 'react';
 import { useRouter } from "next/navigation"
+import {signInWithEmailAndPassword} from"firebase/auth";
 
 export default function Component() {
   const router = useRouter();
