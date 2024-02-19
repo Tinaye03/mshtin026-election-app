@@ -3,11 +3,86 @@
  * @see https://v0.dev/t/k6pjElcKGR8
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
+"use client";
 import Link from "next/link"
 import { CardHeader, CardContent, Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { useState, useEffect } from "react";
+import { auth, firestore } from "../firebase"
+import { Vote } from "@/models/vote";
+import { Voter } from "@/models/voter";
+import { useRouter } from "next/navigation";
+import database from "../database";
 
 export default function Component() {
+
+  const [voter,setVoter] = useState<any>();
+  const [user,setUser] = useState(null);
+  const router = useRouter();
+ 
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+        const userID = user.uid;
+``
+        const promisedVoter: Promise<Voter | undefined> = database.getVoter(userID);
+ 
+        promisedVoter.then((voter) => {
+          if (voter) {
+            setVoter(voter);
+          }
+        });
+      }
+    });
+  }
+  , []);
+ 
+
+  // const handleVote = async(candidateID) => {
+  //   const newVote: Vote = {
+  //     voteID: `v_${Math.floor(100000 + Math.random() * 900000)}`,
+  //     voter: voter,
+  //     candidateID: candidateID
+  //   }
+ 
+  //   console.log(newVote);
+ 
+  //   await database.addVote(newVote);
+  //   router.push("/")
+  // }
+
+  const handleVote = async (candidateID) => {
+    // Display a confirmation dialog
+    const isConfirmed = window.confirm("Are you sure you want to vote for this candidate?");
+
+    if(isConfirmed){
+      // Check if the voter has already voted
+    
+
+    // Check if the voter has already voted
+    if (voter && !voter.voted) {
+      const newVote: Vote = {
+        voteID: `v_${Math.floor(100000 + Math.random() * 900000)}`,
+        voter: voter,
+        candidateID: candidateID,
+      };
+
+      console.log(newVote);
+
+      await database.addVote(newVote);
+
+      // Update the voter's status to indicate they have voted
+      const updateVoterStatus: Voter = {...voter, voted:true}
+      await database.updateVoterStatus(updateVoterStatus);
+
+      router.push("/");
+    } else {
+      // Display an alert or message indicating the user cannot vote again
+      alert("You have already voted. You cannot vote again.");
+    }
+  }};
+
   return (
     <div className="flex flex-col min-h-screen" style={{ backgroundImage: "url('/background.jpg')", backgroundSize: "cover"}}>
       <header className="py-6 md:py-5">
@@ -38,7 +113,7 @@ export default function Component() {
             <CardContent className="flex flex-col gap-1">
               <div className="mx-auto flex w-[350px] items-center justify-center p-2 sm:p-2">
                 <img
-                  alt="Amelia Johnson"
+                  alt="Tinaye"
                   className="rounded-full"
                   height="200"
                   src="/member-01.jpeg"
@@ -49,7 +124,10 @@ export default function Component() {
                   width="200"
                 />
               </div>
-              <Button className="mx-auto w-[300px]">Vote</Button>
+              <Button 
+              onClick = {() => handleVote('0')}
+              className="mx-auto w-[300px]"
+              >Vote</Button>
             </CardContent>
           </Card>
           <Card className="w-full grid gap-1 p-1">
@@ -60,7 +138,7 @@ export default function Component() {
             <CardContent className="flex flex-col gap-1">
               <div className="mx-auto flex w-[350px] items-center justify-center p-2 sm:p-2">
                 <img
-                  alt="Ethan Williams"
+                  alt="Tanatswa"
                   className="rounded-full"
                   height="200"
                   src="/member-02.jpeg"
@@ -71,7 +149,10 @@ export default function Component() {
                   width="200"
                 />
               </div>
-              <Button className="mx-auto w-[300px]">Vote</Button>
+              <Button 
+              onClick = {() => handleVote('1')}
+              className="mx-auto w-[300px]">
+                Vote</Button>
             </CardContent>
           </Card>
           <Card className="w-full grid gap-1 p-1">
@@ -82,7 +163,7 @@ export default function Component() {
             <CardContent className="flex flex-col gap-1">
               <div className="mx-auto flex w-[350px] items-center justify-center p-2 sm:p-2">
                 <img
-                  alt="Olivia Brown"
+                  alt="Florence"
                   className="rounded-full"
                   height="200"
                   src="/member-03.jpeg"
@@ -93,7 +174,10 @@ export default function Component() {
                   width="200"
                 />
               </div>
-              <Button className="mx-auto w-[300px]">Vote</Button>
+              <Button 
+              onClick = {() => handleVote('2')}
+              className="mx-auto w-[300px]">
+                Vote</Button>
             </CardContent>
           </Card>
           <Card className="w-full grid gap-1 p-1">
@@ -104,7 +188,7 @@ export default function Component() {
             <CardContent className="flex flex-col gap-1">
               <div className="mx-auto flex w-[350px] items-center justify-center p-2 sm:p-2">
                 <img
-                  alt="Noah Lee"
+                  alt="Kiwi"
                   className="rounded-full"
                   height="200"
                   src="/member-04.jpeg"
@@ -115,7 +199,10 @@ export default function Component() {
                   width="200"
                 />
               </div>
-              <Button className="mx-auto w-[300px]">Vote</Button>
+              <Button 
+              onClick = {() => handleVote('3')}
+              className="mx-auto w-[300px]">
+                Vote</Button>
             </CardContent>
           </Card>
         </div>

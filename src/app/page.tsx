@@ -3,13 +3,51 @@
  * @see https://v0.dev/t/G3k3CNoH9gO
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
+"use client";
 import Link from "next/link"
+import { Voter } from "@/models/voter";
+import database from "./database";
+import { useEffect, useState } from "react";
+import { Vote } from "@/models/vote";
 
 export default function Component() {
+
+  const [votes, setVotes] = useState<Vote[]>([]);
+  
+
+
+  useEffect(() => {
+    fetchVotes();
+  }, []
+  );
+
+  const getVotesByCandidate = () => {
+    const candidateIDs: { [key: string]: number } = {};
+
+    for (const { candidateID } of votes) {
+      candidateIDs[candidateID] = (candidateIDs[candidateID] || 0) + 1;
+    }
+
+    return candidateIDs;
+  }
+
+
+  const fetchVotes = async () => {
+    const votes = await database.getVotes();
+    setVotes(votes)
+  }
+
+  const getTotalVotes = () => {
+    if (votes) {
+      return votes.length;
+    }
+    0;
+  }
+
   return (
-    <div className="grid min-h-screen flex flex-col items-center justify-center gap-6 px-4 text-center md:px-6" style={{ backgroundImage: "url('/background.jpg')", backgroundSize: "cover"}}>
-      <div className="space-y-5">
-        <div className="space-y-3">
+    <div className="grid min-h-screen flex flex-col items-center justify-center gap-6 px-4 text-center md:px-6" style={{ backgroundImage: "url('/background2.jpg')", backgroundSize: "cover" }}>
+      <div className="space-y-10">
+        <div className="space-y-5">
           {/* <img
             alt="Company Logo"
             className="mx-auto mb-8"
@@ -21,11 +59,12 @@ export default function Component() {
             }}
             width={220}
           /> */}
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-4xl">EmpowerTech Solutions</h1>
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-4xl">EmpowerTech Solutions</h2>
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-2xl">Chief Technology Officer Vote Results</h1>
-          <p className="text-gray-500 dark:text-black-400">We extend our gratitude to all who participated. Kindly find the voting results displayed below:</p>
+          <p className="text-gray-500 dark:text-black-400">We extend our gratitude to all who participated.</p>
+          <p className="text-gray-500 dark:text-black-400">Kindly find the voting results displayed below:</p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <img
@@ -41,16 +80,28 @@ export default function Component() {
               />
               <div className="text-lg font-medium ml-2">Tinaye Mushore</div>
             </div>
-            <div className="text-sm text-black-500 dark:text-black-400">25%</div>
+            <div className="text-sm text-black-500 dark:text-black-400"
+              style={{
+                width:`${Math.round(
+                  getVotesByCandidate()[0] / votes.length * 100
+                )}%`,
+              }}>
+              {Math.round(
+                getVotesByCandidate()[0] / votes.length * 100
+              )
+              } %
+              <p>Vote Count: {getVotesByCandidate()[0]}</p>
+            </div>
           </div>
-          <div className="h-4 bg-gray-200 rounded-lg overflow-hidden">
+          {/* <div className="h-4 bg-gray-200 rounded-lg overflow-hidden">
             <div
               className="h-full bg-blue-500"
               style={{
                 width: "25%",
               }}
             />
-          </div>
+          </div> */}
+
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <img
@@ -66,16 +117,29 @@ export default function Component() {
               />
               <div className="text-lg font-medium ml-2">Tanatswa Mhanzi</div>
             </div>
-            <div className="text-sm text-black-500 dark:text-black-400">20%</div>
+            <div className="text-sm text-black-500 dark:text-black-400"
+              style={{
+                width: `${Math.round(
+                  getVotesByCandidate()[1] / votes.length * 100
+                )}%`,
+              }}>
+              {Math.round(
+                getVotesByCandidate()[1] / votes.length * 100
+              )
+              } %
+              <p>Vote Count: {getVotesByCandidate()[1]}</p>
+            </div>
           </div>
-          <div className="h-4 bg-gray-200 rounded-lg overflow-hidden">
+          {/* <div className="h-4 bg-gray-200 rounded-lg overflow-hidden">
             <div
               className="h-full bg-blue-500"
               style={{
-                width: "20%",
+                width: "25%",
               }}
             />
-          </div>
+          </div> */}
+
+
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <img
@@ -91,16 +155,28 @@ export default function Component() {
               />
               <div className="text-lg font-medium ml-2">Florence Muirimi</div>
             </div>
-            <div className="text-sm text-black-500 dark:text-black-400">30%</div>
+            <div className="text-sm text-black-500 dark:text-black-400"
+              style={{
+                width: `${Math.round(
+                  getVotesByCandidate()[2] / votes.length * 100
+                )}%`,
+              }}>
+              {Math.round(
+                getVotesByCandidate()[2] / votes.length * 100
+              )
+              } %
+              <p>Vote Count: {getVotesByCandidate()[2]}</p>
+            </div>
           </div>
-          <div className="h-4 bg-gray-200 rounded-lg overflow-hidden">
+          {/* <div className="h-4 bg-gray-200 rounded-lg overflow-hidden">
             <div
               className="h-full bg-blue-500"
               style={{
-                width: "30%",
+                width: "25%",
               }}
             />
-          </div>
+          </div> */}
+
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <img
@@ -114,18 +190,31 @@ export default function Component() {
                 }}
                 width={120}
               />
+
+
               <div className="text-lg font-medium ml-2">Kiwi Mupfupi</div>
             </div>
-            <div className="text-sm text-black-500 dark:text-black-400">25%</div>
+            <div className="text-sm text-black-500 dark:text-black-400"
+              style={{
+                width: `${Math.round(
+                  getVotesByCandidate()[3] / votes.length * 100
+                )}%`,
+              }}>
+              {Math.round(
+                getVotesByCandidate()[3] / votes.length * 100
+              )
+              } %
+              <p>Vote Count: {getVotesByCandidate()[3]}</p>
+            </div>
           </div>
-          <div className="h-4 bg-gray-200 rounded-lg overflow-hidden">
+          {/* <div className="h-4 bg-gray-200 rounded-lg overflow-hidden">
             <div
               className="h-full bg-blue-500"
               style={{
                 width: "25%",
               }}
             />
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="absolute top-4 right-4 flex gap-2">

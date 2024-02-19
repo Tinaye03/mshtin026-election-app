@@ -13,6 +13,8 @@ import { useRouter } from "next/navigation"
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth, firestore } from "../firebase"
 import { doc, setDoc } from 'firebase/firestore'
+import {Voter} from "@/models/voter";
+import database from "../database";
 
 export default function Component() {
   const router = useRouter();
@@ -71,8 +73,8 @@ export default function Component() {
     }
 
     if (password && email && firstName && lastName && idNumber) {
-      router.push("/vote")
-    }
+      // router.push("/vote")
+    
 
     await createUserWithEmailAndPassword(auth, email, password)
       .then(userCredentials => {
@@ -82,15 +84,28 @@ export default function Component() {
 
     const user = auth.currentUser;
     const uid = user.uid;
+    
 
-    const userRef = doc(firestore, 'users', uid);
-    await setDoc(userRef, {
-      firstName,
-      lastName,
-      idNumber,
-      email
-    })
-  };
+    /*  const userRef = doc(firestore, "users", uid);
+     await setDoc(userRef, {
+       firstName,
+       lastName,
+       idNumber,
+     }); */
+
+    const newVoter: Voter = {
+      idNumber: uid,
+      firstName: firstName,
+      LastName: lastName,
+      email: email,
+      password: password,
+      voted: false,
+    }
+
+    await database.addVoter(newVoter);
+    router.push("/");
+
+  }}
 
 
   return (

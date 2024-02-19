@@ -41,14 +41,15 @@ export default function Component() {
     }
 
     if (password && email) {
-      router.push("/vote")
-    }
+      // router.push("/vote")
+    
 
     await signInWithEmailAndPassword(auth, email, password)
       .then(userCredentials => {
         const user = userCredentials.user;
         console.log('Registered with:', user.email);})
-  };
+        router.push("/vote")
+  }};
 
   return (
     <Card>
